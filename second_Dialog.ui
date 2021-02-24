@@ -37,7 +37,7 @@ color: rgb(0, 68, 97);</string>
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>160</y>
+     <y>130</y>
      <width>47</width>
      <height>13</height>
     </rect>
@@ -94,7 +94,7 @@ color: rgb(0, 68, 97);</string>
     <string notr="true">font: 10pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
-    <string>EMPLOYEE ID</string>
+    <string>YOUR ID</string>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -114,7 +114,7 @@ color: rgb(0, 68, 97);</string>
    <property name="geometry">
     <rect>
      <x>580</x>
-     <y>160</y>
+     <y>130</y>
      <width>231</width>
      <height>21</height>
     </rect>
@@ -166,7 +166,7 @@ COLOR:rgb(255, 0, 0)</string>
     <string notr="true">font: 10pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
-    <string>EMPLOYEE ID</string>
+    <string>PASSWORD</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit2_3">
@@ -200,6 +200,48 @@ COLOR:rgb(255, 0, 0)</string>
    </property>
    <property name="text">
     <string>SIGN UP</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>170</y>
+     <width>82</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Admin</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton_2">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>170</y>
+     <width>82</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Employee</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label5_6">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>170</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 10pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string>PROFILE</string>
    </property>
   </widget>
  </widget>
