@@ -12,7 +12,8 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLabel, QLineEd
 import sys
 import pic
 
-
+login_dict = {'Guest': ['abcd', 'SPARK', 'free']}
+a_login_dict = {'GuestA': ['abcd', 'SPARK', 'free']}
 # class Ui_MainWindow(QMainWindow):
 #     def __init__(self):
 #         super(Ui_MainWindow,self).__init__()
@@ -68,7 +69,7 @@ class first_Dialog(QDialog):
     
     def check_password(self):
         msg = QMessageBox()
-        if self.lineEdit_1.text() == 'Karthikeyan' and self.lineEdit_2.text() == '9751':
+        if self.lineEdit_1.text() == 'Kar' and self.lineEdit_2.text() == '1234':
             #self.pushButton_1.clicked.connect(self.page3)
             msg.buttonClicked.connect(self.page3)
             print(type(self.page3))
@@ -80,6 +81,19 @@ class first_Dialog(QDialog):
             msg.buttonClicked.connect(page5_.page5)
             msg.setText('Success')
             msg.exec_()
+        elif self.lineEdit_1.text() in login_dict:
+            if login_dict[self.lineEdit_1.text()][2] == self.lineEdit_2.text():
+                page5_=home_page()
+                msg.buttonClicked.connect(page5_.page5)
+                msg.setText('Success')
+                msg.exec_()
+        elif self.lineEdit_1.text() in a_login_dict:
+            if a_login_dict[self.lineEdit_1.text()][2] == self.lineEdit_2.text():
+                msg.buttonClicked.connect(self.page3)
+                msg.setText('Success')
+                msg.exec_()
+
+
         else:
             msg.setText('Incorrect Password')
             msg.exec_()
@@ -117,7 +131,26 @@ class second_Dialog(QDialog):
         loadUi(r"second_Dialog.ui",self)
         self.pushButton2_1.clicked.connect(self.backfunction)
 
+
+    def login_data(self):
+        login_dict[self.lineEdit_1.text()] = [self.lineEdit_2.text(),
+                                        self.lineEdit2_3.text(), self.lineEdit2_4.text()]
+        print('emp ==', login_dict)
+
+    def a_login_data(self):
+        a_login_dict[self.lineEdit_1.text()]=[self.lineEdit_2.text(),
+                                            self.lineEdit2_3.text(), self.lineEdit2_4.text()]
+        print('adm ==', a_login_dict)
+
     def backfunction(self):
+        if self.lineEdit_1.text() in login_dict or self.lineEdit_1.text() in a_login_dict:
+            msg = QMessageBox()
+            msg.setText('User mail id already exists')
+            msg.exec_()
+
+
+        self.radioButton.toggled.connect(self.a_login_data)
+        self.radioButton_2.toggled.connect(self.login_data)
         msg = QMessageBox()
         msg.setText('Success signup')
         msg.exec_()
@@ -131,16 +164,17 @@ class home_page(QDialog):
     def __init__(self):
         super(home_page,self).__init__()
         loadUi(r"home_page.ui",self)
-        self.pushButton_2.clicked.connect(self.page4)
+        # self.pushButton_2.clicked.connect(self.page4)
+        self.pushButton_2.clicked.connect(self.return_login)
         self.pushButton3_1.clicked.connect(self.page5)
 
-    def page4(self):
-        app.quit()
-        print("Exit")
-        # page4=first_Dialog()
-        # widget.addWidget(page4)
-        # widget.setCurrentIndex(widget.currentIndex()+1)
-        # print("firstpage")
+    # def page4(self):
+    #     app.quit()
+    #     print("Exit")
+    #     # page4=first_Dialog()
+    #     # widget.addWidget(page4)
+    #     # widget.setCurrentIndex(widget.currentIndex()+1)
+    #     # print("firstpage")
     
 
     def page5(self):
@@ -148,6 +182,11 @@ class home_page(QDialog):
         widget.addWidget(page5)
         widget.setCurrentIndex(widget.currentIndex()+1)
         #self.pushButton3_1.clicked.connect(self.VideoWindow)
+
+    def return_login(self):
+        login_page = first_Dialog()
+        widget.addWidget(login_page)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 class VideoWindow(QMainWindow):
 
@@ -274,5 +313,4 @@ widget.setFixedHeight(480)
 widget.show()
 app.exec_()
 
-import cv2
-print(cv2.__version__)
+
