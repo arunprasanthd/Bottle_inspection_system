@@ -9,55 +9,13 @@ from PyQt5.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
 from PyQt5.QtWidgets import QMainWindow,QWidget, QPushButton, QAction
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLabel, QLineEdit, QGridLayout, QMessageBox)
-import sys
-import pic
+import sys, pic, csv
 
-login_dict = {'Guest': ['abcd', 'SPARK', 'free']}
-a_login_dict = {'GuestA': ['abcd', 'SPARK', 'free']}
-# class Ui_MainWindow(QMainWindow):
-#     def __init__(self):
-#         super(Ui_MainWindow,self).__init__()
-#         # self.ui = Ui_MainWindow()
-#         # self.ui.setupUi(self)
-#         loadUi(r"C:\Users\MAHA RAJA\Desktop\Qt design\first.ui",self)
-#         self.pushButton.clicked.connect(self.Next)
-#     # def dialogbox(self):
-#     #     self.hide()
-#     #     self.myDialog = Ui_Dialog()
-#     #     self.myDialog.show()
-#     def Next(self):
-#         widget.setCurrentIndex(widget.currentIndex()+1)
-
-   
-        
-# class Ui_Screen2(Screen2):
-#     def __init__(self):
-#         super(Ui_Screen2,self).__init__()
-#         # self.ui = Ui_Dialog()
-#         # self.ui.setupUi(self)
-#         loadUi(r"C:\Users\MAHA RAJA\Desktop\Qt design\second page.ui",self)
-
-
-# if __name__ == '__main__':
-#     app = QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
-
-# # app = QtWidgets.QApplication(sys.argv)
-# # widget=QtWidgets.QStackedWidget()
-# # MainWindow=Ui_MainWindow()
-# # screen=Ui_Screen2()
-# # widget.addWidget(MainWindow)
-# # widget.addWidget(Screen)
-# # widget.setFixedHeight(300)
-# # widget.setFixedHeight(400)
-# # widget.show()
-# # MainWindow.show()
-# # sys.exit(app.exec_())
-
+login_dict = {'Guest': ['1234', 'e', 'e']}
+a_login_dict = {'GuestA': ['1234', 'a', 'a']}
+mydict = []
+fields = ['Your ID', 'Mail ID', 'Organization', 'Password', 'Profile'] 
+filename = 'CSV_File_Handling.csv' 
 
 class first_Dialog(QDialog):
     def __init__(self):
@@ -69,6 +27,18 @@ class first_Dialog(QDialog):
     
     def check_password(self):
         msg = QMessageBox()
+
+        with open(filename, 'r', newline='')as new_csv_file:
+            csv_reader = csv.DictReader(new_csv_file)
+
+            for i in csv_reader: 
+                if i['Profile'] == 'e':
+                    login_dict[i['Mail ID']] = [i['Your ID'], i['Organization'], i['Password']]
+                elif i['Profile'] == 'a':
+                    a_login_dict[i['Mail ID']] = [i['Your ID'], i['Organization'], i['Password']]
+                print('emp: ', login_dict)
+                print('adm: ', a_login_dict)
+
         if self.lineEdit_1.text() == 'Kar' and self.lineEdit_2.text() == '1234':
             #self.pushButton_1.clicked.connect(self.page3)
             msg.buttonClicked.connect(self.page3)
@@ -130,27 +100,42 @@ class second_Dialog(QDialog):
         super(second_Dialog,self).__init__()
         loadUi(r"second_Dialog.ui",self)
         self.pushButton2_1.clicked.connect(self.backfunction)
-
-
-    def login_data(self):
-        login_dict[self.lineEdit_1.text()] = [self.lineEdit_2.text(),
-                                        self.lineEdit2_3.text(), self.lineEdit2_4.text()]
-        print('emp ==', login_dict)
-
-    def a_login_data(self):
-        a_login_dict[self.lineEdit_1.text()]=[self.lineEdit_2.text(),
-                                            self.lineEdit2_3.text(), self.lineEdit2_4.text()]
-        print('adm ==', a_login_dict)
-
-    def backfunction(self):
-        if self.lineEdit_1.text() in login_dict or self.lineEdit_1.text() in a_login_dict:
-            msg = QMessageBox()
-            msg.setText('User mail id already exists')
-            msg.exec_()
-
-
         self.radioButton.toggled.connect(self.a_login_data)
         self.radioButton_2.toggled.connect(self.login_data)
+
+    def login_data(self):
+        # login_dict[self.lineEdit_1.text()] = [self.lineEdit_2.text(),
+        #                                 self.lineEdit2_3.text(), self.lineEdit2_4.text()]
+        # print('emp ==', login_dict)
+        self.profile = 'e'
+
+    def a_login_data(self):
+        # a_login_dict[self.lineEdit_1.text()]=[self.lineEdit_2.text(),
+        #                                     self.lineEdit2_3.text(), self.lineEdit2_4.text()]
+        # print('adm ==', a_login_dict)
+        self.profile = 'a'
+
+    def backfunction(self):
+        # if self.lineEdit_1.text() in login_dict or self.lineEdit_1.text() in a_login_dict:
+        #     msg = QMessageBox()
+        #     msg.setText('User mail id already exists')
+        #     msg.exec_()
+
+        mydict.append({'Your ID': self.lineEdit_2.text(), 'Mail ID': self.lineEdit_1.text(),
+                       'Organization': self.lineEdit2_3.text(), 'Password': self.lineEdit2_4.text(), 'Profile': self.profile})
+        print('signup: ', mydict)
+
+
+        # open a new file 'new_titanic,csv' under write mode
+        with open(filename, 'w', newline="")as new_csv_file:
+            writer = csv.DictWriter(new_csv_file, fieldnames=fields)
+
+            writer.writeheader()  # writing the headers(field names)
+
+            writer.writerows(mydict)  # writing data rows
+
+        # self.radioButton.toggled.connect(self.a_login_data)
+        # self.radioButton_2.toggled.connect(self.login_data)
         msg = QMessageBox()
         msg.setText('Success signup')
         msg.exec_()
@@ -312,5 +297,4 @@ widget.setFixedHeight(480)
 # widget.setFixedHeight(580)
 widget.show()
 app.exec_()
-
 
