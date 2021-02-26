@@ -7,13 +7,13 @@ from PyQt5.QtWidgets import (QApplication, QDialog, QFileDialog, QHBoxLayout, QL
     QGroupBox, QMainWindow, QMessageBox, QScrollArea)
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys, pic, os, csv
+import sys, os, csv
 
 """ 
 Works TODO 
 
 1. Message Box resize
-2. Window title and Icon
+2. Window title and Icon - Done
 Finally EXIT, Logout, LogIn tracker - NF
 """
 
@@ -195,6 +195,7 @@ class second_Dialog(QDialog):
         elif self.lineEdit_2.text() == '' or self.lineEdit_1.text() == '' or self.lineEdit2_3.text() == '' or self.lineEdit2_4.text() == '' or self.profile == '':
             msg = QMessageBox()
             msg.setText('Enter all fields')
+            msg.setFixedWidth(200)
             msg.exec_()
         else:
             mydict.append({'Your ID': self.lineEdit_2.text(), 'Mail ID': self.lineEdit_1.text(),
@@ -222,7 +223,7 @@ class first_Dialog(QDialog):
 
     def check_password(self):
         msg = QMessageBox()
-
+        msg.setFixedWidth(500)
         with open(filename, 'r', newline='')as new_csv_file:
             csv_reader = csv.DictReader(new_csv_file)
 
@@ -250,9 +251,13 @@ class first_Dialog(QDialog):
                 msg.setText('Success')
                 msg.exec_()
             else:
+                msg.setWindowTitle('Password Error')
                 msg.setText('Incorrect Password')
                 msg.exec_()
         else:
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowIcon(QIcon('information.jpg'))
+            msg.setWindowTitle('Mail id Error')
             msg.setText('Incorrect Mail Id')
             msg.exec_()
 
@@ -276,5 +281,7 @@ widget.addWidget(mainwindow)
 
 widget.setFixedWidth(800)
 widget.setFixedHeight(500)
+widget.setWindowTitle('Bottle Inspection System - SPARK DNA')
+widget.setWindowIcon(QIcon('spark-drives.png'))
 widget.show()
 app.exec_()

@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>Spark DNA Logo.png</normaloff>Spark DNA Logo.png</iconset>
+    <normaloff>spark-drives.png</normaloff>spark-drives.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
