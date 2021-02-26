@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>875</width>
-    <height>470</height>
+    <width>800</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
   <widget class="QLabel" name="label3_3">
    <property name="geometry">
     <rect>
-     <x>530</x>
+     <x>490</x>
      <y>80</y>
      <width>261</width>
      <height>16</height>
@@ -36,7 +36,7 @@ color: rgb(0, 68, 97);</string>
   <widget class="QLabel" name="label4_4">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>430</x>
      <y>174</y>
      <width>47</width>
      <height>12</height>
@@ -52,8 +52,8 @@ color: rgb(0, 68, 97);</string>
   <widget class="QLabel" name="label1_1">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>120</y>
+     <x>120</x>
+     <y>130</y>
      <width>111</width>
      <height>111</height>
     </rect>
@@ -74,7 +74,7 @@ color: rgb(0, 68, 97);</string>
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>540</x>
      <y>134</y>
      <width>231</width>
      <height>20</height>
@@ -84,7 +84,7 @@ color: rgb(0, 68, 97);</string>
   <widget class="QLabel" name="label5_5">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>430</x>
      <y>134</y>
      <width>91</width>
      <height>15</height>
@@ -100,8 +100,8 @@ color: rgb(0, 68, 97);</string>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>-30</y>
+     <x>360</x>
+     <y>-20</y>
      <width>20</width>
      <height>511</height>
     </rect>
@@ -113,7 +113,7 @@ color: rgb(0, 68, 97);</string>
   <widget class="QLineEdit" name="lineEdit_1">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>540</x>
      <y>174</y>
      <width>231</width>
      <height>20</height>
@@ -123,8 +123,8 @@ color: rgb(0, 68, 97);</string>
   <widget class="QLabel" name="label2_2">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>270</y>
+     <x>50</x>
+     <y>280</y>
      <width>261</width>
      <height>21</height>
     </rect>
@@ -140,7 +140,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QLabel" name="label5_7">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>430</x>
      <y>213</y>
      <width>101</width>
      <height>16</height>
@@ -156,7 +156,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QLabel" name="label6_6">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>430</x>
      <y>253</y>
      <width>91</width>
      <height>16</height>
@@ -172,7 +172,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QLineEdit" name="lineEdit2_3">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>540</x>
      <y>213</y>
      <width>231</width>
      <height>21</height>
@@ -182,7 +182,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QLineEdit" name="lineEdit2_4">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>540</x>
      <y>253</y>
      <width>231</width>
      <height>21</height>
@@ -192,7 +192,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QPushButton" name="pushButton2_1">
    <property name="geometry">
     <rect>
-     <x>610</x>
+     <x>630</x>
      <y>360</y>
      <width>75</width>
      <height>23</height>
@@ -205,7 +205,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QRadioButton" name="radioButton">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>540</x>
      <y>293</y>
      <width>82</width>
      <height>17</height>
@@ -218,7 +218,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QRadioButton" name="radioButton_2">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>630</x>
      <y>293</y>
      <width>82</width>
      <height>17</height>
@@ -231,7 +231,7 @@ COLOR:rgb(255, 0, 0)</string>
   <widget class="QLabel" name="label5_6">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>430</x>
      <y>293</y>
      <width>91</width>
      <height>16</height>
@@ -242,6 +242,19 @@ COLOR:rgb(255, 0, 0)</string>
    </property>
    <property name="text">
     <string>PROFILE</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton2_2">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>360</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>BACK</string>
    </property>
   </widget>
  </widget>
