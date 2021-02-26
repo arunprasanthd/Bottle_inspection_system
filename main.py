@@ -12,14 +12,10 @@ import sys, pic, os, csv
 """ 
 Works TODO 
 
-1. Back button in signup page - Done
-2. Form layout resize - 
-3. Home position rechange - Done
-4. All possible - Error popup - Done
-5. Remove Video Window  - Done
+1. Message Box resize
+2. Window title and Icon
 Finally EXIT, Logout, LogIn tracker - NF
 """
-
 
 # To select images folder
 path_ = './Images/'
@@ -40,7 +36,7 @@ class Window(QWidget):
     def __init__(self):
         super().__init__()
         formLayout = QFormLayout()
-        groupBox = QGroupBox("This Is Group Box")
+        groupBox = QGroupBox()
         self.labelList = []
         self.buttonList = []
         self.image_list = image_list
