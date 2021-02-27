@@ -12,8 +12,7 @@ import sys, os, csv
 """ 
 Works TODO 
 
-1. Message Box resize
-2. Window title and Icon - Done
+1. 
 Finally EXIT, Logout, LogIn tracker - NF
 """
 
@@ -158,6 +157,8 @@ class InspectionWindow(QMainWindow):
         # Error pop-up for blank input, input number out of range and non-integer input
         else:
             msg = QMessageBox()
+            msg.setWindowIcon(QIcon('information.jpg'))
+            msg.setWindowTitle('Image Range Error')
             msg.setIcon(QMessageBox.Critical)
             msg.setText('Enter from 1 to {}'.format(len(image_list)))
             x = msg.exec_()
@@ -187,15 +188,17 @@ class second_Dialog(QDialog):
         self.profile = 'a'
 
     def backfunction(self):
+        msg = QMessageBox()
+        msg.setWindowIcon(QIcon('information.jpg'))
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle('Signup Error')
+        
         if self.lineEdit_1.text() in login_dict or self.lineEdit_1.text() in a_login_dict:
-            msg = QMessageBox()
             msg.setText('User mail id already exists')
             msg.exec_()
 
         elif self.lineEdit_2.text() == '' or self.lineEdit_1.text() == '' or self.lineEdit2_3.text() == '' or self.lineEdit2_4.text() == '' or self.profile == '':
-            msg = QMessageBox()
             msg.setText('Enter all fields')
-            msg.setFixedWidth(200)
             msg.exec_()
         else:
             mydict.append({'Your ID': self.lineEdit_2.text(), 'Mail ID': self.lineEdit_1.text(),
@@ -204,9 +207,9 @@ class second_Dialog(QDialog):
             with open(filename, 'w', newline="")as new_csv_file:
                 writer = csv.DictWriter(new_csv_file, fieldnames=fields)
                 writer.writeheader() 
-                writer.writerows(mydict) 
+                writer.writerows(mydict)
 
-            msg = QMessageBox()
+            msg.setWindowTitle('Signup Message')
             msg.setText('Success signup')
             msg.exec_()
             backpage = first_Dialog()
@@ -223,7 +226,8 @@ class first_Dialog(QDialog):
 
     def check_password(self):
         msg = QMessageBox()
-        msg.setFixedWidth(500)
+        msg.setWindowIcon(QIcon('information.jpg'))
+        msg.setIcon(QMessageBox.Information)
         with open(filename, 'r', newline='')as new_csv_file:
             csv_reader = csv.DictReader(new_csv_file)
 
@@ -240,23 +244,24 @@ class first_Dialog(QDialog):
         if self.lineEdit_1.text() in login_dict:
             if login_dict[self.lineEdit_1.text()][2] == self.lineEdit_2.text():
                 msg.buttonClicked.connect(self.gotoInspectionWindow)
-                msg.setText('Success')
+                msg.setWindowTitle('Login Message')
+                msg.setText('Logged in Successfully')
                 msg.exec_()
             else:
+                msg.setWindowTitle('Password Error')
                 msg.setText('Incorrect Password')
                 msg.exec_()
         elif self.lineEdit_1.text() in a_login_dict:
             if a_login_dict[self.lineEdit_1.text()][2] == self.lineEdit_2.text():
                 msg.buttonClicked.connect(self.gotoInspectionWindow)
-                msg.setText('Success')
+                msg.setWindowTitle('Login Message')
+                msg.setText('Logged in Successfully')
                 msg.exec_()
             else:
                 msg.setWindowTitle('Password Error')
                 msg.setText('Incorrect Password')
                 msg.exec_()
         else:
-            msg.setIcon(QMessageBox.Information)
-            msg.setWindowIcon(QIcon('information.jpg'))
             msg.setWindowTitle('Mail id Error')
             msg.setText('Incorrect Mail Id')
             msg.exec_()
