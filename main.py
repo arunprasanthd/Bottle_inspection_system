@@ -102,36 +102,36 @@ class InspectionWindow(QMainWindow):
         self.label.setPixmap(pixmap)
 
         # To perform pushbutton clicking operations to change image
-        self.previous_button.clicked.connect(self.previous_image)
-        self.next_button.clicked.connect(self.next_image)
-        self.enter_button.clicked.connect(self.enter_image)
-        self.back_button.clicked.connect(self.back_image)
+        self.previous_button.clicked.connect(self.previousImage)
+        self.next_button.clicked.connect(self.nextImage)
+        self.enter_button.clicked.connect(self.enterImage)
+        self.back_button.clicked.connect(self.backImage)
 
         self.actionExit.triggered.connect(self.gotoLoginPage)
         self.actionLogout.triggered.connect(self.gotoLoginPage)
 
         # To perform corresponding pushbutton clicking operations to view image
         for c, d in zip(self.new_win.buttonList, self.image_list):
-            c.clicked.connect(lambda xy, d=d: self.click_button(d))
+            c.clicked.connect(lambda xy, d=d: self.clickButton(d))
 
         # To perform corresponding thumbnail clicking operations to view image
         for e, f in zip(self.new_win.labelList, self.image_list):
-            e.clicked.connect(lambda xy, f=f: self.click_button(f))
+            e.clicked.connect(lambda xy, f=f: self.clickButton(f))
 
     # Method to view corresponding image of clicked button
-    def click_button(self, a):
+    def clickButton(self, a):
         self.back_image_ = self.current_image
         self.current_image = a
         pixmap = QPixmap(path_ + self.current_image)
         self.label.setPixmap(pixmap)
 
     def gotoLoginPage(self):
-        login_page = first_Dialog()
+        login_page = LoginWindow()
         widget.addWidget(login_page)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
     # Method to view previous image
-    def previous_image(self):
+    def previousImage(self):
         self.back_image_ = self.current_image
         self.current_image = self.image_list[(self.image_list.index(
             self.current_image) - 1) % len(self.image_list)]
@@ -139,7 +139,7 @@ class InspectionWindow(QMainWindow):
         self.label.setPixmap(pixmap)
 
     # Method to view next image
-    def next_image(self):
+    def nextImage(self):
         self.back_image_ = self.current_image
         self.current_image = self.image_list[(self.image_list.index(
             self.current_image) + 1) % len(self.image_list)]
@@ -147,7 +147,7 @@ class InspectionWindow(QMainWindow):
         self.label.setPixmap(pixmap)
 
     # Method to view corresponding image of entered number
-    def enter_image(self):
+    def enterImage(self):
         self.code = self.line_input.text()
         if self.code.isnumeric() and int(self.code) in list(range(1, len(self.image_list) + 1)):
             self.back_image_ = self.current_image
@@ -165,29 +165,29 @@ class InspectionWindow(QMainWindow):
         self.line_input.clear()
 
     # Method to view back image
-    def back_image(self):
+    def backImage(self):
         pixmap = QPixmap(path_ + self.back_image_)
         self.label.setPixmap(pixmap)
         self.back_image_, self.current_image = self.current_image, self.back_image_
 
     
-class second_Dialog(QDialog):
+class SignupWindow(QDialog):
     def __init__(self):
-        super(second_Dialog, self).__init__()
+        super(SignupWindow, self).__init__()
         loadUi(r"second_Dialog.ui", self)
-        self.pushButton2_1.clicked.connect(self.backfunction)
+        self.pushButton2_1.clicked.connect(self.backFunction)
         self.pushButton2_2.clicked.connect(InspectionWindow.gotoLoginPage)
-        self.radioButton.toggled.connect(self.a_login_data)
-        self.radioButton_2.toggled.connect(self.login_data)
+        self.radioButton.toggled.connect(self.aLoginData)
+        self.radioButton_2.toggled.connect(self.loginData)
         self.profile = ''
 
-    def login_data(self):
+    def loginData(self):
         self.profile = 'e'
 
-    def a_login_data(self):
+    def aLoginData(self):
         self.profile = 'a'
 
-    def backfunction(self):
+    def backFunction(self):
         msg = QMessageBox()
         msg.setWindowIcon(QIcon('information.jpg'))
         msg.setIcon(QMessageBox.Information)
@@ -212,19 +212,19 @@ class second_Dialog(QDialog):
             msg.setWindowTitle('Signup Message')
             msg.setText('Success signup')
             msg.exec_()
-            backpage = first_Dialog()
+            backpage = LoginWindow()
             widget.addWidget(backpage)
             widget.setCurrentIndex(widget.currentIndex()+1)
 
 
-class first_Dialog(QDialog):
+class LoginWindow(QDialog):
     def __init__(self):
-        super(first_Dialog, self).__init__()
+        super(LoginWindow, self).__init__()
         loadUi(r"first_Dialog.ui", self)
         self.pushButton.clicked.connect(self.gotoSignupPage)
-        self.pushButton_1.clicked.connect(self.check_password)
+        self.pushButton_1.clicked.connect(self.checkPassword)
 
-    def check_password(self):
+    def checkPassword(self):
         msg = QMessageBox()
         msg.setWindowIcon(QIcon('information.jpg'))
         msg.setIcon(QMessageBox.Information)
@@ -267,7 +267,7 @@ class first_Dialog(QDialog):
             msg.exec_()
 
     def gotoSignupPage(self):
-        nextpage = second_Dialog()
+        nextpage = SignupWindow()
         widget.addWidget(nextpage)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
@@ -278,9 +278,9 @@ class first_Dialog(QDialog):
 
 
 app=QApplication(sys.argv)
-mainwindow=first_Dialog()
-secondpage=second_Dialog()
-thirdpage=InspectionWindow()
+mainwindow = LoginWindow()
+secondpage = SignupWindow()
+thirdpage = InspectionWindow()
 widget=QtWidgets.QStackedWidget()
 widget.addWidget(mainwindow)
 

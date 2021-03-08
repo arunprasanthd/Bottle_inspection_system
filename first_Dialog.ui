@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1080</width>
     <height>500</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string>Bottle Inspection System</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="pic.qrc">
+   <iconset>
     <normaloff>:/newPrefix/spark-drives.png</normaloff>:/newPrefix/spark-drives.png</iconset>
   </property>
   <property name="styleSheet">
